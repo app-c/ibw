@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "bigwave",
+    "slug": "bigwave",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
