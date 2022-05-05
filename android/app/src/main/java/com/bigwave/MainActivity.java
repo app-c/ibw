@@ -55,3 +55,5 @@ public class MainActivity extends ReactActivity {
     super.invokeDefaultOnBackPressed();
   }
 }
+
+
