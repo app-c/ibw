@@ -21,6 +21,7 @@ import { useAuth } from "../../hooks/AuthContext";
 import logo from "../../assets/logo.png";
 import avatar from "../../assets/User.png";
 import theme from "../../global/styles/theme";
+import { Engajamento } from "../../Components/Engajamento";
 
 export function Home() {
   const { signOut, user, updateUser } = useAuth();
@@ -109,6 +110,8 @@ export function Home() {
           <Title>descrição</Title>
         </BoxText>
       </BoxPlayer>
+
+      <Engajamento />
     </Container>
   );
 }
