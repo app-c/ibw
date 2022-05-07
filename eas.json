@@ -20,6 +20,7 @@
       }
     },
     "production": {
+      "image": "latest",
       "ios": {
         "cocoapods": "1.10.2"
       }
