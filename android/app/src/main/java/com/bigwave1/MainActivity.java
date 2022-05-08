@@ -1,11 +1,10 @@
-package com.bigwave;
+package com.bigwave1;
 
 import android.os.Build;
 import android.os.Bundle;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
-import com.facebook.react.ReactRootView;
 
 import expo.modules.ReactActivityDelegateWrapper;
 
