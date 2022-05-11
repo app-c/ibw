@@ -11,7 +11,7 @@
       "ios": {
         "buildConfiguration": "Debug",
         "image": "latest",
-        "cocoapods": "1.10.2",
+        "cocoapods": "1.10.3",
         "enterpriseProvisioning": "universal"
       }
     },
@@ -19,13 +19,13 @@
       "distribution": "internal",
 
       "ios": {
-        "cocoapods": "1.10.2"
+        "cocoapods": "1.10.3"
       }
     },
     "production": {
       "ios": {
         "image": "latest",
-        "cocoapods": "1.10.2"
+        "cocoapods": "1.10.3"
       }
     }
   },
