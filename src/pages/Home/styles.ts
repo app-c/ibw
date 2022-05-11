@@ -1,4 +1,4 @@
-import { RFValue } from "react-native-responsive-fontsize";
+import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import styled from "styled-components/native";
 import theme from "../../global/styles/theme";
 
@@ -7,14 +7,13 @@ const { colors, fonts } = theme;
 export const Container = styled.View`
   flex: 1;
 
-  /* align-items: center; */
-  /* justify-content: center; */
   background-color: ${colors.primary[1]};
 `;
 
 export const BoxPlayer = styled.View`
   background-color: ${colors.text[2]};
   width: 100%;
+  max-height: ${RFPercentage(70)}%;
   align-items: center;
   padding: 0 0 20px;
 `;
@@ -45,5 +44,7 @@ export const Avatar = styled.Image`
 export const BoxText = styled.View`
   width: 100%;
   padding: 0 20px;
+  /* background-color: ${colors.secundary[2]}; */
+  /* margin-top: ${RFValue(-50)}px; */
 `;
 export const Title = styled.Text``;

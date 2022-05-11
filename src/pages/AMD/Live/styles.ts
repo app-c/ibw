@@ -45,7 +45,7 @@ export const Select = styled.View<SelectProps>`
 export const TitleSelect = styled.Text<SelectProps>`
   color: ${({ select }) => (select ? colors.text[1] : colors.text[4])};
   font-size: ${RFValue(12)}px;
-  font-family: ${fonts.Bold};
+  font-family: ${fonts.REGULAR};
 `;
 
 export const BoxVideo = styled.View`
@@ -61,8 +61,8 @@ export const ModalImage = styled.Image`
 
 export const TitleModal = styled.Text`
   color: ${colors.text[1]};
-  font-size: ${RFValue(18)}px;
-  font-family: ${fonts.Bold};
+  font-size: ${RFValue(24)}px;
+  font-family: ${fonts.REGULAR};
 `;
 
 export const TextHelp = styled.Text`
@@ -70,7 +70,7 @@ export const TextHelp = styled.Text`
 `;
 
 export const TextButton = styled.Text`
-  font-family: ${fonts.Bold};
+  font-family: ${fonts.REGULAR};
 `;
 
 export const SelectButtomImage = styled.TouchableOpacity`

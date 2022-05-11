@@ -18,4 +18,5 @@ export const Title = styled.Text`
   font-size: ${RFValue(32)}px;
   top: -20px;
   margin-right: ${RFValue(20)}px;
+  font-family: ${fonts.REGULAR};
 `;

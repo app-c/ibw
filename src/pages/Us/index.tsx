@@ -1,10 +1,15 @@
 import React from "react";
-import { Container, Title } from "./styles";
+import { Header } from "../../Components/Header";
+import { Box, Container, Title } from "./styles";
 
 export function Us() {
   return (
     <Container>
-      <Title>QUEM SOMOS</Title>
+      <Header />
+
+      <Box>
+        <Title>QUEM SOMOS</Title>
+      </Box>
     </Container>
   );
 }

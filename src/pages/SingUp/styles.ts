@@ -17,6 +17,7 @@ export const Container = styled.View`
 export const Title = styled.Text`
   color: ${colors.text[2]};
   font-size: ${RFValue(16)}px;
+  font-family: ${fonts.REGULAR};
 `;
 
 export const CreateAccount = styled.View`
@@ -40,4 +41,5 @@ export const TitleCreate = styled.Text`
   font-size: ${RFValue(16)}px;
   color: ${colors.text[2]};
   margin-left: 10px;
+  font-family: ${fonts.REGULAR};
 `;

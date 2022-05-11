@@ -26,7 +26,11 @@ import {
 import { Buttom } from "../../../Components/Buttom";
 import { Header } from "../../../Components/Header";
 
-export function News() {
+type Props = {
+  closeModal: () => void;
+};
+
+export function Live({ closeModal }: Props) {
   const [select, setSelect] = useState("video");
   const [playing, setPlaying] = useState(false);
   const [url, setUrl] = useState("");
@@ -41,28 +45,6 @@ export function News() {
 
   const handleSelect = useCallback((text: string) => {
     setSelect(text);
-  }, []);
-
-  const handleSelectImage = useCallback(async () => {
-    const result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: true,
-      aspect: [4, 3],
-      quality: 1,
-    });
-
-    console.log(result);
-
-    if (!result.cancelled) {
-      setImage(result.uri);
-    }
-
-    const fileName = new Date().getTime();
-    const reference = storage().ref(`/image/${fileName}.png`);
-
-    await reference.putFile(result.uri);
-    const photoUrl = await reference.getDownloadURL();
-    setImageUrl(photoUrl);
   }, []);
 
   useFocusEffect(
@@ -81,21 +63,17 @@ export function News() {
       );
     }
 
-    if (select === "image" && imageUrl === "") {
-      setLoading(false);
-      return Alert.alert("CADASTRO", "Você precisa selecionar uma image");
-    }
     Firestore()
-      .collection("news")
-      .add({
+      .collection("live")
+      .doc("mG87wxZlHsiqIoEL7l3p")
+      .update({
         title,
         descricao,
-        type: select,
         video: url,
-        image: imageUrl !== "" ? imageUrl : null,
       })
-      .then(() => setLoading(false));
-  }, [descricao, imageUrl, select, title, url]);
+      .then(() => setLoading(false))
+      .finally(() => closeModal());
+  }, [closeModal, descricao, title, url]);
 
   const onStateChange = useCallback((state) => {
     if (state === "ended") {
@@ -110,11 +88,10 @@ export function News() {
 
   return (
     <Container>
-      <Header />
       <ScrollView
         style={{
           width: "100%",
-          marginTop: 30,
+          marginTop: 100,
         }}
         contentContainerStyle={{
           justifyContent: "center",
@@ -123,7 +100,7 @@ export function News() {
           paddingBottom: 100,
         }}
       >
-        <Title>ADICIONE NOVOS POSTS E VIDOS</Title>
+        <Title>News</Title>
         <Box>
           <Form>
             <Input
@@ -152,72 +129,42 @@ export function News() {
                   <TitleSelect select={select === "video"}>VIDEO</TitleSelect>
                 </Select>
               </TouchableOpacity>
-
-              <TouchableOpacity onPress={() => handleSelect("image")}>
-                <Select select={select === "image"}>
-                  <TitleSelect select={select === "image"}>IMAGE</TitleSelect>
-                </Select>
-              </TouchableOpacity>
             </BoxSelect>
 
-            {select === "video" && (
-              <View style={{ marginTop: 20 }}>
-                <Modalize ref={modalizeRef}>
-                  <View
-                    style={{ alignItems: "center", justifyContent: "center" }}
+            <View style={{ marginTop: 20 }}>
+              <Modalize ref={modalizeRef}>
+                <View
+                  style={{ alignItems: "center", justifyContent: "center" }}
+                >
+                  <ModalImage source={help} />
+
+                  <TouchableOpacity
+                    onPress={handleCloseModal}
+                    style={{ marginTop: 16 }}
                   >
-                    <ModalImage source={help} />
                     <TextHelp>Copiar o id do video conforme a imagem</TextHelp>
-
-                    <TouchableOpacity
-                      onPress={handleCloseModal}
-                      style={{ marginTop: 16 }}
-                    >
-                      <TitleModal>FECHAR</TitleModal>
-                    </TouchableOpacity>
-                  </View>
-                </Modalize>
-                <Input
-                  onChangeText={(h) => setUrl(h)}
-                  value={url}
-                  name="url"
-                  type="custom"
-                  nome="Id do video"
+                    <TitleModal>FECHAR</TitleModal>
+                  </TouchableOpacity>
+                </View>
+              </Modalize>
+              <Input
+                onChangeText={(h) => setUrl(h)}
+                value={url}
+                name="url"
+                type="custom"
+                nome="Id do video"
+              />
+              <BoxVideo>
+                <Title>Preview</Title>
+                <YoutubePlayer
+                  height={250}
+                  width={400}
+                  play={playing}
+                  videoId={url}
+                  onChangeState={onStateChange}
                 />
-                <BoxVideo>
-                  <Title>Preview</Title>
-                  <YoutubePlayer
-                    height={250}
-                    width={400}
-                    play={playing}
-                    videoId={url}
-                    onChangeState={onStateChange}
-                  />
-                </BoxVideo>
-              </View>
-            )}
-
-            {select === "image" && (
-              <View
-                style={{
-                  width: "100%",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  marginTop: 36,
-                }}
-              >
-                <Buttom
-                  load={loading}
-                  pres={handleSelectImage}
-                  nome="Selecionar imagem"
-                />
-
-                <Image
-                  style={{ width: 200, height: 150, marginTop: 16 }}
-                  source={{ uri: image }}
-                />
-              </View>
-            )}
+              </BoxVideo>
+            </View>
           </Form>
         </Box>
 

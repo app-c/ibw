@@ -19,6 +19,7 @@ export const Title = styled.Text`
   margin-left: 8px;
   margin-bottom: 4px;
   font-size: ${RFValue(12)}px;
+  font-family: ${fonts.REGULAR};
 `;
 
 export const Box = styled.View<Props>`
@@ -36,12 +37,13 @@ export const Box = styled.View<Props>`
     ${({ isError }) =>
       isError &&
       css`
-        border-width: 2px;
+        border-width: 3px;
       `}
     ${({ isFocus }) =>
       isFocus &&
       css`
         border-width: 2px;
+        border-color: ${colors.secundary[2]};
       `};
 `;
 
@@ -49,6 +51,7 @@ export const Container = styled.TextInput`
   flex: 1;
   font-size: ${RFValue(16)}px;
   color: ${colors.text[2]};
+  font-family: ${fonts.REGULAR};
 `;
 
 export const Icon = styled(Feather)`

@@ -7,7 +7,7 @@ export default {
 
     secundary: {
       "1": "rgba(48, 201, 205, 1)",
-      "2": "rgba(48, 201, 205, 0.5)",
+      "2": "rgba(48, 201, 205, 0.7)",
     },
 
     focus: {
@@ -26,5 +26,5 @@ export default {
     },
   },
 
-  fonts: { "1": "" },
+  fonts: { REGULAR: "Monda_400Regular", Bold: "Monda_700Bold" },
 };

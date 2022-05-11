@@ -28,6 +28,7 @@ export const TextContainer = styled.View`
 export const Title = styled.Text`
   font-size: ${RFValue(16)}px;
   color: ${colors.text[2]};
+  font-family: ${fonts.Bold};
 `;
 
 export const Avatar = styled.Image`
@@ -38,6 +39,7 @@ export const Avatar = styled.Image`
 
 export const TitleName = styled.Text`
   color: ${colors.text[2]};
+  font-family: ${fonts.REGULAR};
 `;
 
 export const LogOf = styled.TouchableOpacity`

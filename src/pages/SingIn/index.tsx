@@ -18,7 +18,7 @@ import {
   Up,
 } from "./styles";
 
-import imageFundo from "../../assets/imageFundo.png";
+import imageFundo from "../../assets/fundo.png";
 
 interface PropsSignIn {
   email: string;

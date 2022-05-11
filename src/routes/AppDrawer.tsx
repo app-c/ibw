@@ -20,6 +20,7 @@ const AppDrawer: React.FC = () => {
     <Drawer.Navigator
       drawerContent={DrawerContent}
       screenOptions={{
+        drawerLabelStyle: { fontFamily: theme.fonts.REGULAR },
         headerShown: false,
         drawerActiveTintColor: theme.colors.text[2],
         drawerInactiveTintColor: theme.colors.text[4],
@@ -29,7 +30,9 @@ const AppDrawer: React.FC = () => {
       <Drawer.Screen name="HOME" component={Home} />
       <Drawer.Screen name="EVENTOS" component={Eventos} />
       <Drawer.Screen name="QUEM SOMOS" component={Us} />
-      {user.adm && <Drawer.Screen name="NEWS" component={News} />}
+      {user.adm && (
+        <Drawer.Screen name="ADICIONAR UM EVENTO" component={News} />
+      )}
     </Drawer.Navigator>
   );
 };

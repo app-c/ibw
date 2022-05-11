@@ -19,8 +19,10 @@ export const BoxDescricao = styled.View`
 
 export const Title = styled.Text`
   font-size: ${RFValue(16)}px;
+  font-family: ${fonts.Bold};
 `;
 
 export const Description = styled.Text`
   font-size: ${RFValue(12)}px;
+  font-family: ${fonts.Bold};
 `;
