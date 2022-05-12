@@ -47,4 +47,12 @@ export const BoxText = styled.View`
   /* background-color: ${colors.secundary[2]}; */
   /* margin-top: ${RFValue(-50)}px; */
 `;
-export const Title = styled.Text``;
+export const Title = styled.Text`
+  font-size: ${RFValue(16)}px;
+  font-family: ${fonts.Bold};
+`;
+
+export const TitleDesciption = styled.Text`
+  font-size: ${RFValue(14)}px;
+  font-family: ${fonts.REGULAR};
+`;

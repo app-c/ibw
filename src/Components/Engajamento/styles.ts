@@ -29,3 +29,7 @@ export const Ico = styled(FontAwesome5)`
   color: ${colors.secundary[2]};
   margin-left: ${RFValue(25)}px;
 `;
+
+export const Box = styled.TouchableOpacity`
+  padding: 10px;
+`;

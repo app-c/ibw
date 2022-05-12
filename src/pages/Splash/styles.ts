@@ -12,11 +12,21 @@ export const Container = styled.View`
   background-color: ${colors.primary[1]};
 `;
 
-export const Logo = styled.Image``;
+export const Logo = styled.Image`
+  width: ${RFValue(100)}px;
+  height: ${RFValue(100)}px;
+  margin-top: ${RFValue(100)}px;
+  position: absolute;
+`;
 
 export const Title = styled.Text`
   font-size: ${RFValue(32)}px;
   top: -20px;
   margin-right: ${RFValue(20)}px;
   font-family: ${fonts.REGULAR};
+`;
+
+export const Loti = styled.View`
+  width: ${RFValue(150)}px;
+  height: ${RFValue(150)}px;
 `;

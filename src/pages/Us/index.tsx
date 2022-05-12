@@ -1,6 +1,10 @@
 import React from "react";
+import LottieView from "lottie-react-native";
+import { View } from "react-native";
 import { Header } from "../../Components/Header";
-import { Box, Container, Title } from "./styles";
+import { Box, Container, Loti, Title } from "./styles";
+
+import loti from "../../assets/loti.json";
 
 export function Us() {
   return (
@@ -8,7 +12,13 @@ export function Us() {
       <Header />
 
       <Box>
-        <Title>QUEM SOMOS</Title>
+        <Title>
+          Itacoatiara Big Wave - competição de surf de ondas grandes e tow in
+        </Title>
+
+        <Loti>
+          <LottieView autoPlay source={loti} />
+        </Loti>
       </Box>
     </Container>
   );

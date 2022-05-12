@@ -34,6 +34,7 @@ export const Title = styled.Text`
 export const Up = styled.Text`
   color: ${colors.text[2]};
   margin-left: ${RFValue(15)}px;
+  font-family: ${fonts.REGULAR};
 `;
 
 export const CreateAccount = styled.View`
@@ -58,17 +59,16 @@ export const ImageFundo = styled.Image`
   width: ${lg}px;
   height: ${at * 0.4}px;
   top: ${RFValue(-30)}px;
-  opacity: 0.8;
+  opacity: 0.9;
 `;
 
 export const TittleLogo = styled.Text`
   color: ${colors.text[2]};
   font-size: ${RFValue(32)}px;
-  color: ${colors.secundary[1]};
-  font-family: ${fonts.REGULAR};
+  font-family: ${fonts.Bold};
 
   position: absolute;
   right: 0;
-  top: ${RFValue(20)}px;
+  top: ${RFValue(50)}px;
   left: ${RFValue(20)}px;
 `;

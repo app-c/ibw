@@ -1,9 +1,24 @@
-import React, { useCallback, useRef, useState } from "react";
-import { Alert, Button, TouchableOpacity, View } from "react-native";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import {
+  ActivityIndicator,
+  Alert,
+  Button,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import YoutubePlayer from "react-native-youtube-iframe";
 import { Modalize, ModalizeProps } from "react-native-modalize";
 
-import { BoxPlayer, BoxText, Container, Logo, Title } from "./styles";
+import Firebase from "@react-native-firebase/firestore";
+import { useFocusEffect } from "@react-navigation/native";
+import {
+  BoxPlayer,
+  BoxText,
+  Container,
+  Logo,
+  Title,
+  TitleDesciption,
+} from "./styles";
 import { useAuth } from "../../hooks/AuthContext";
 import { Engajamento } from "../../Components/Engajamento";
 import { sizeH, sizeW } from "../../utils";
@@ -11,13 +26,20 @@ import { ButtonFlutuante } from "../../Components/ButtonFlutuante";
 import { Live } from "../AMD/Live";
 import { Header } from "../../Components/Header";
 
+interface Props {
+  descricao: string;
+  title: string;
+  video: string;
+}
+
 export function Home() {
   const modalRef = useRef<Modalize>(null);
 
   //* * ESTADOS ................................................................
   const { user } = useAuth();
   const [playing, setPlaying] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState<Props>();
+  const [load, setLoad] = useState(true);
 
   //* * ........................................................................
 
@@ -38,6 +60,27 @@ export function Home() {
     }
   }, []);
 
+  //! CHAMADA DA API
+  useEffect(() => {
+    const load = Firebase()
+      .collection("live")
+      .doc("mG87wxZlHsiqIoEL7l3p")
+      .onSnapshot((h) => {
+        const dc = h.data() as Props;
+
+        setData(dc);
+      });
+    return () => load();
+  }, []);
+
+  useFocusEffect(
+    useCallback(() => {
+      if (data) {
+        setLoad(false);
+      }
+    }, [data])
+  );
+
   // todo ......................................................................
 
   return (
@@ -50,18 +93,22 @@ export function Home() {
 
       <Header />
 
-      <BoxPlayer>
-        <YoutubePlayer
-          height={sizeH(0.3)}
-          width={sizeW(1)}
-          videoId="nTb46ahOlTA"
-          onChangeState={onStateChange}
-        />
-        <BoxText>
-          <Title>Título</Title>
-          <Title>descrição</Title>
-        </BoxText>
-      </BoxPlayer>
+      {load ? (
+        <ActivityIndicator />
+      ) : (
+        <BoxPlayer>
+          <YoutubePlayer
+            height={sizeH(0.3)}
+            width={sizeW(1)}
+            videoId={data.video}
+            onChangeState={onStateChange}
+          />
+          <BoxText>
+            <Title>{data.title}</Title>
+            <TitleDesciption>{data.descricao}</TitleDesciption>
+          </BoxText>
+        </BoxPlayer>
+      )}
 
       <Engajamento />
     </Container>
