@@ -1,5 +1,7 @@
 import { RFValue } from "react-native-responsive-fontsize";
 import styled from "styled-components/native";
+import { getStatusBarHeight } from "react-native-iphone-x-helper";
+import { Platform } from "react-native";
 import theme from "../../global/styles/theme";
 
 const { colors, fonts } = theme;
@@ -7,6 +9,7 @@ const { colors, fonts } = theme;
 export const Container = styled.View`
   flex: 1;
   background-color: ${colors.primary[1]};
+  padding-top: ${Platform.OS === `ios` ? getStatusBarHeight() : 5}px;
 `;
 
 export const Header = styled.View`
