@@ -56,7 +56,7 @@ export function Eventos() {
           <View style={{ width: "100%" }}>
             <FlatList
               contentContainerStyle={{
-                paddingBottom: 100,
+                paddingBottom: 300,
               }}
               data={news}
               keyExtractor={(h) => h.id}

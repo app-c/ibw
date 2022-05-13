@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Alert, Image, ScrollView, TouchableOpacity, View } from "react-native";
 import YoutubePlayer from "react-native-youtube-iframe";
 import { Modalize } from "react-native-modalize";
-import { useFocusEffect } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import * as ImagePicker from "expo-image-picker";
 import storage from "@react-native-firebase/storage";
 import Firestore from "@react-native-firebase/firestore";
@@ -27,6 +27,7 @@ import { Buttom } from "../../../Components/Buttom";
 import { Header } from "../../../Components/Header";
 
 export function News() {
+  const { navigate } = useNavigation();
   const [select, setSelect] = useState("video");
   const [playing, setPlaying] = useState(false);
   const [url, setUrl] = useState("");
@@ -94,8 +95,14 @@ export function News() {
         video: url,
         image: imageUrl !== "" ? imageUrl : null,
       })
-      .then(() => setLoading(false));
-  }, [descricao, imageUrl, select, title, url]);
+      .then(() => {
+        Alert.alert("EVENTO", "Evento cadastrado com sucesso!");
+        setLoading(false);
+        setTitle("");
+        setDescricao("");
+        navigate("EVENTOS");
+      });
+  }, [descricao, imageUrl, navigate, select, title, url]);
 
   const onStateChange = useCallback((state) => {
     if (state === "ended") {

@@ -25,8 +25,6 @@ export function CardsEventos({
 }: Props) {
   const [playing, setPlaying] = useState(false);
 
-  console.log(image, type);
-
   const onStateChange = useCallback((state) => {
     if (state === "ended") {
       setPlaying(false);
@@ -49,7 +47,7 @@ export function CardsEventos({
 
       {type === "image" && (
         <Image
-          style={{ width: "100%", height: 200 }}
+          style={{ width: "95%", height: 230 }}
           resizeMode="stretch"
           source={{ uri: image }}
         />

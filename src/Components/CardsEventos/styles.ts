@@ -10,6 +10,7 @@ export const Container = styled.View`
   border-radius: 10px;
   background-color: ${colors.text[2]};
   margin-bottom: ${RFValue(24)}px;
+  align-items: center;
 `;
 
 export const BoxDescricao = styled.View`

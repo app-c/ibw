@@ -35,7 +35,7 @@ export function Engajamento() {
         <Ico name="tiktok" />
       </Box>
 
-      <Box onPress={() => Link("https://www.instagram.com/")}>
+      <Box onPress={() => Link("https://www.instagram.com/itacoatiarabigwave")}>
         <Ico name="instagram" />
       </Box>
     </Container>
