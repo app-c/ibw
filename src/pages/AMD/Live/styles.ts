@@ -61,7 +61,7 @@ export const ModalImage = styled.Image`
 
 export const TitleModal = styled.Text`
   color: ${colors.text[1]};
-  font-size: ${RFValue(24)}px;
+  font-size: ${RFValue(18)}px;
   font-family: ${fonts.REGULAR};
 `;
 

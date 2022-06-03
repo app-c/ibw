@@ -16,6 +16,7 @@ export const BoxPlayer = styled.View`
   max-height: ${RFPercentage(70)}%;
   align-items: center;
   padding: 0 0 20px;
+  margin-top: ${RFValue(130)}px;
 `;
 
 export const Header = styled.View`

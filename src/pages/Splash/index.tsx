@@ -1,27 +1,31 @@
-import React, { useEffect } from "react";
-import { useNavigation } from "@react-navigation/native";
+import React, { useCallback, useEffect } from "react";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import LottieView from "lottie-react-native";
+import { Box, Center, HStack, VStack } from "native-base";
+import { ActivityIndicator } from "react-native";
 import { Container, Logo, Loti, Title } from "./styles";
-import logo from "../../assets/logo1.png";
-
-import loti from "../../assets/loti.json";
+import logo from "../../../assets/logo.png";
 
 export function Splash() {
   const { navigate } = useNavigation();
 
-  useEffect(() => {
-    setTimeout(() => {
-      navigate("singIn");
-    }, 2000);
-  }, [navigate]);
-
+  useFocusEffect(
+    useCallback(() => {
+      setTimeout(() => {
+        navigate("singIn");
+      }, 2000);
+    }, [navigate])
+  );
   return (
     <Container>
-      <Logo resizeMode="contain" source={logo} />
-
-      <Loti>
-        <LottieView autoPlay source={loti} />
-      </Loti>
+      <VStack>
+        <Center>
+          <Logo resizeMode="contain" source={logo} />
+          <Box mt="40">
+            <ActivityIndicator size="large" />
+          </Box>
+        </Center>
+      </VStack>
     </Container>
   );
 }

@@ -1,21 +1,16 @@
+/* eslint-disable array-callback-return */
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import {
-  ActivityIndicator,
-  Alert,
-  Button,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { ActivityIndicator, Alert, TouchableOpacity } from "react-native";
 import YoutubePlayer from "react-native-youtube-iframe";
-import { Modalize, ModalizeProps } from "react-native-modalize";
+import { Modalize } from "react-native-modalize";
 
 import Firebase from "@react-native-firebase/firestore";
 import { useFocusEffect } from "@react-navigation/native";
+import { Box, Center, Image, Text } from "native-base";
 import {
   BoxPlayer,
   BoxText,
   Container,
-  Logo,
   Title,
   TitleDesciption,
 } from "./styles";
@@ -25,12 +20,9 @@ import { sizeH, sizeW } from "../../utils";
 import { ButtonFlutuante } from "../../Components/ButtonFlutuante";
 import { Live } from "../AMD/Live";
 import { Header } from "../../Components/Header";
-
-interface Props {
-  descricao: string;
-  title: string;
-  video: string;
-}
+import { ILive } from "../../dtos";
+import fundo from "../../assets/fundo1-onda.png";
+import theme from "../../global/styles/theme";
 
 export function Home() {
   const modalRef = useRef<Modalize>(null);
@@ -38,8 +30,9 @@ export function Home() {
   //* * ESTADOS ................................................................
   const { user } = useAuth();
   const [playing, setPlaying] = useState(false);
-  const [data, setData] = useState<Props>();
+  const [data, setData] = useState<ILive>(null);
   const [load, setLoad] = useState(true);
+  const [activi, setActive] = useState(true);
 
   //* * ........................................................................
 
@@ -64,19 +57,37 @@ export function Home() {
   useEffect(() => {
     const load = Firebase()
       .collection("live")
-      .doc("mG87wxZlHsiqIoEL7l3p")
       .onSnapshot((h) => {
-        const dc = h.data() as Props;
+        const ids = h.docs.map((i) => i.id);
 
-        setData(dc);
+        if (ids[0]) {
+          ids.map((i) => {
+            Firebase()
+              .collection("live")
+              .doc(i)
+              .get()
+              .then((p) => {
+                const dc = p.data() as ILive;
+                setData(dc);
+              });
+          });
+        } else {
+          setData(null);
+        }
       });
+
     return () => load();
   }, []);
 
   useFocusEffect(
     useCallback(() => {
+      setActive(true);
       if (data) {
         setLoad(false);
+      } else {
+        setTimeout(() => {
+          setActive(false);
+        }, 5000);
       }
     }, [data])
   );
@@ -85,7 +96,7 @@ export function Home() {
 
   return (
     <Container>
-      {user.adm && <ButtonFlutuante pres={OpenModal} />}
+      <Image top={-10} position="absolute" source={fundo} alt="fund" />
 
       <Modalize ref={modalRef}>
         <Live closeModal={CloseModal} />
@@ -94,21 +105,41 @@ export function Home() {
       <Header />
 
       {load ? (
-        <ActivityIndicator />
+        <Center mt="40%">
+          {activi && <ActivityIndicator />}
+          <Text
+            fontFamily={theme.fonts.REGULAR}
+            fontSize="xl"
+            color={theme.colors.text[2]}
+          >
+            Fique atento para a proxima live
+          </Text>
+          <Box h={200}>
+            <YoutubePlayer
+              height={sizeH(0.6)}
+              width={sizeW(0.7)}
+
+              // onChangeState={onStateChange}
+            />
+          </Box>
+        </Center>
       ) : (
-        <BoxPlayer>
-          <YoutubePlayer
-            height={sizeH(0.3)}
-            width={sizeW(1)}
-            videoId={data.video}
-            onChangeState={onStateChange}
-          />
-          <BoxText>
-            <Title>{data.title}</Title>
-            <TitleDesciption>{data.descricao}</TitleDesciption>
-          </BoxText>
-        </BoxPlayer>
+        <>
+          <BoxPlayer>
+            <YoutubePlayer
+              height={sizeH(0.3)}
+              width={sizeW(1)}
+              videoId={data.video}
+              onChangeState={onStateChange}
+            />
+            <BoxText>
+              <Title>{data.title}</Title>
+              <TitleDesciption>{data.descricao}</TitleDesciption>
+            </BoxText>
+          </BoxPlayer>
+        </>
       )}
+      {user.adm && <ButtonFlutuante pres={OpenModal} />}
 
       <Engajamento />
     </Container>

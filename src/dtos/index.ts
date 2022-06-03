@@ -15,3 +15,9 @@ export interface INewsDto {
   video: string;
   image: string;
 }
+
+export interface ILive {
+  descricao: string;
+  title: string;
+  video: string;
+}

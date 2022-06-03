@@ -6,7 +6,6 @@ const { colors, fonts } = theme;
 
 export const Container = styled.View`
   background-color: ${colors.primary[1]};
-  flex: 1;
 `;
 
 export const Box = styled.View`

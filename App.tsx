@@ -10,9 +10,11 @@ import {
   Monda_400Regular,
   Monda_700Bold,
 } from "@expo-google-fonts/monda";
+import { NativeBaseProvider } from "native-base";
 import { Route } from "./src/routes";
 import AppProvider from "./src/hooks";
-import { useAuth } from "./src/hooks/AuthContext";
+import { Splash } from "./src/pages/Splash";
+import { Loading } from "./src/pages/Loading";
 
 export default function App() {
   LogBox.ignoreLogs([`Setting a timer for a long period`]);
@@ -22,15 +24,19 @@ export default function App() {
     Monda_700Bold,
   });
 
-  if (!fontsLoaded) {
-    return <AppLoading />;
-  }
-
   return (
     <NavigationContainer>
       <AppProvider>
-        <StatusBar hidden style="light" />
-        <Route />
+        <NativeBaseProvider>
+          {!fontsLoaded ? (
+            <Loading />
+          ) : (
+            <>
+              <StatusBar hidden style="light" />
+              <Route />
+            </>
+          )}
+        </NativeBaseProvider>
       </AppProvider>
     </NavigationContainer>
   );

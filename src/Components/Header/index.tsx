@@ -3,9 +3,10 @@ import { DrawerActions, useNavigation } from "@react-navigation/native";
 import React from "react";
 import { TouchableOpacity } from "react-native";
 import { RFValue } from "react-native-responsive-fontsize";
+import { Box, Center } from "native-base";
 import theme from "../../global/styles/theme";
 import { Container, Head, Logo, Title } from "./styles";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/logo-w.png";
 
 export function Header() {
   const { dispatch } = useNavigation();

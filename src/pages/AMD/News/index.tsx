@@ -7,17 +7,17 @@ import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import * as ImagePicker from "expo-image-picker";
 import storage from "@react-native-firebase/storage";
 import Firestore from "@react-native-firebase/firestore";
+import { Center } from "native-base";
+import { Video } from "expo-av";
 import { Input } from "../../../Components/Input";
-import help from "../../../assets/instrucao.png";
+import tuto from "../../../assets/tutorial.mp4";
 
 import {
   Box,
   BoxSelect,
   BoxVideo,
   Container,
-  ModalImage,
   Select,
-  SelectButtomImage,
   TextHelp,
   Title,
   TitleModal,
@@ -25,8 +25,11 @@ import {
 } from "./styles";
 import { Buttom } from "../../../Components/Buttom";
 import { Header } from "../../../Components/Header";
+import theme from "../../../global/styles/theme";
 
 export function News() {
+  const video = React.useRef(null);
+
   const { navigate } = useNavigation();
   const [select, setSelect] = useState("video");
   const [playing, setPlaying] = useState(false);
@@ -34,6 +37,7 @@ export function News() {
   const [loading, setLoading] = useState(false);
   const [image, setImage] = useState(null);
   const [imageUrl, setImageUrl] = useState("");
+  const [status, setStatus] = React.useState({});
 
   const [title, setTitle] = useState("");
   const [descricao, setDescricao] = useState("");
@@ -118,6 +122,45 @@ export function News() {
   return (
     <Container>
       <Header />
+      <Modalize size="large" ref={modalizeRef}>
+        <View
+          style={{
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Center mt={10}>
+            <Video
+              style={{
+                width: 400,
+                height: 450,
+              }}
+              shouldPlay
+              isMuted
+              ref={video}
+              source={tuto}
+              useNativeControls
+              resizeMode="contain"
+              isLooping
+              onPlaybackStatusUpdate={(status) => setStatus(() => status)}
+            />
+          </Center>
+          <TextHelp style={{ marginTop: 20 }}>
+            Copiar o id do video conforme acima
+          </TextHelp>
+          <TouchableOpacity
+            onPress={handleCloseModal}
+            style={{
+              marginTop: 8,
+              backgroundColor: theme.colors.focus_second[1],
+              borderRadius: 10,
+              padding: 7,
+            }}
+          >
+            <TitleModal>FECHAR</TitleModal>
+          </TouchableOpacity>
+        </View>
+      </Modalize>
       <ScrollView
         style={{
           width: "100%",
@@ -169,21 +212,6 @@ export function News() {
 
             {select === "video" && (
               <View style={{ marginTop: 20 }}>
-                <Modalize ref={modalizeRef}>
-                  <View
-                    style={{ alignItems: "center", justifyContent: "center" }}
-                  >
-                    <ModalImage source={help} />
-                    <TextHelp>Copiar o id do video conforme a imagem</TextHelp>
-
-                    <TouchableOpacity
-                      onPress={handleCloseModal}
-                      style={{ marginTop: 16 }}
-                    >
-                      <TitleModal>FECHAR</TitleModal>
-                    </TouchableOpacity>
-                  </View>
-                </Modalize>
                 <Input
                   onChangeText={(h) => setUrl(h)}
                   value={url}

@@ -3,6 +3,7 @@ import { FormHandles } from "@unform/core";
 import { Form } from "@unform/mobile";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { ScrollView, Text, View } from "react-native";
+import { Box, Image } from "native-base";
 import { Buttom } from "../../Components/Buttom";
 import { Input } from "../../Components/Input";
 import { useAuth } from "../../hooks/AuthContext";
@@ -18,7 +19,8 @@ import {
   Up,
 } from "./styles";
 
-import imageFundo from "../../assets/fundo.png";
+import imageFundo from "../../assets/fundo1-onda.png";
+import fundo from "../../assets/logo-signIn.png";
 
 interface PropsSignIn {
   email: string;
@@ -36,8 +38,6 @@ export function SingIn() {
     (data: PropsSignIn) => {
       setLoading(true);
 
-      console.log(data.senha);
-
       setTimeout(() => {
         signIn({
           email: data.email,
@@ -54,7 +54,9 @@ export function SingIn() {
     <>
       <Container>
         <ImageFundo source={imageFundo} />
-        <TittleLogo>ITACOATIARA {"\n"}BIG WAVE</TittleLogo>
+        <Box left="10" top={15} position="absolute">
+          <Image resizeMode="contain" alt="logo" source={fundo} size="200" />
+        </Box>
         <ScrollView
           style={{
             width: "100%",

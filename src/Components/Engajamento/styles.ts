@@ -25,11 +25,13 @@ export const Title = styled.Text`
 `;
 
 export const Ico = styled(FontAwesome5)`
-  font-size: ${RFValue(35)}px;
+  font-size: ${RFValue(30)}px;
   color: ${colors.secundary[2]};
-  margin-left: ${RFValue(25)}px;
 `;
 
-export const Box = styled.TouchableOpacity`
-  padding: 10px;
+export const Touch = styled.TouchableOpacity`
+  padding: 8px;
+  align-items: center;
+  justify-content: center;
+  margin-left: 20px;
 `;

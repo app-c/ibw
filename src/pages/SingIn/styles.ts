@@ -59,7 +59,6 @@ export const ImageFundo = styled.Image`
   width: ${lg}px;
   height: ${at * 0.4}px;
   top: ${RFValue(-30)}px;
-  opacity: 0.9;
 `;
 
 export const TittleLogo = styled.Text`
