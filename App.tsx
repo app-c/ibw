@@ -24,18 +24,16 @@ export default function App() {
     Monda_700Bold,
   });
 
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
+
   return (
     <NavigationContainer>
       <AppProvider>
         <NativeBaseProvider>
-          {!fontsLoaded ? (
-            <Loading />
-          ) : (
-            <>
-              <StatusBar hidden style="light" />
-              <Route />
-            </>
-          )}
+          <StatusBar hidden style="light" />
+          <Route />
         </NativeBaseProvider>
       </AppProvider>
     </NavigationContainer>

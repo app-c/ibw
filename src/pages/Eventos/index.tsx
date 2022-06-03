@@ -14,7 +14,7 @@ import { INewsDto } from "../../dtos";
 import { Box, Container, Title } from "./styles";
 import theme from "../../global/styles/theme";
 import { Header } from "../../Components/Header";
-import fundo from "../../assets/fundo1-onda.jpg";
+import fundo from "../../assets/fundo-onda.jpg";
 import cartas1 from "../../assets/cartas1.jpeg";
 import cartas2 from "../../assets/cartas2.jpeg";
 

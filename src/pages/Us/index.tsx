@@ -6,7 +6,7 @@ import { Header } from "../../Components/Header";
 import { Box, Container, Loti, Title } from "./styles";
 
 import loti from "../../assets/loti.json";
-import fundo from "../../assets/fundo1-onda.jpg";
+import fundo from "../../assets/fundo-onda.jpg";
 
 export function Us() {
   return (
