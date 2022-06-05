@@ -7,7 +7,7 @@ const { colors, fonts } = theme;
 export const Container = styled.View`
   flex: 1;
 
-  background-color: ${colors.primary[2]};
+  background-color: #868686;
 `;
 
 export const Box = styled.View`
@@ -26,6 +26,8 @@ export const Title = styled.Text`
 `;
 
 export const Loti = styled.View`
-  width: ${RFValue(250)}px;
-  height: ${RFValue(250)}px;
+  width: ${RFValue(200)}px;
+  height: ${RFValue(200)}px;
+  margin-top: 20px;
+  left: 10px;
 `;

@@ -145,7 +145,7 @@ export function Live({ closeModal }: Props) {
               />
             </Center>
             <TextHelp style={{ marginTop: 20 }}>
-              Copiar o id do video conforme acima
+              Copiar o id do video conforme o exemplo acima
             </TextHelp>
             <TouchableOpacity
               onPress={handleCloseModal}

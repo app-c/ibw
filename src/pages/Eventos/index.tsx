@@ -17,6 +17,9 @@ import { Header } from "../../Components/Header";
 import fundo from "../../assets/fundo-onda.jpg";
 import cartas1 from "../../assets/cartas1.jpeg";
 import cartas2 from "../../assets/cartas2.jpeg";
+import evento1 from "../../assets/evento1.jpeg";
+import evento2 from "../../assets/evento2.jpeg";
+import evento3 from "../../assets/evento3.jpeg";
 
 export function Eventos() {
   const [news, setNews] = useState<INewsDto[]>([]);
@@ -52,14 +55,6 @@ export function Eventos() {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <Container>
-        <Image
-          top={-10}
-          opacity={0.6}
-          position="absolute"
-          source={fundo}
-          alt="fund"
-        />
-
         <Header />
 
         <ScrollView>
@@ -69,7 +64,7 @@ export function Eventos() {
               fontFamily={theme.fonts.Bold}
               color={theme.colors.text[2]}
             >
-              FIQUE POR DENTRO DOS ENVENTOS
+              IBW - GALERIA
             </Text>
             {load ? (
               <View
@@ -92,7 +87,21 @@ export function Eventos() {
                     resizeMode="contain"
                   />
                   <Image
-                    source={cartas2}
+                    source={evento2}
+                    alt="cartas1"
+                    size="600"
+                    resizeMode="contain"
+                    mt={-20}
+                  />
+                  <Image
+                    source={evento1}
+                    alt="cartas1"
+                    size="600"
+                    resizeMode="contain"
+                    mt={-20}
+                  />
+                  <Image
+                    source={evento3}
                     alt="cartas1"
                     size="600"
                     resizeMode="contain"

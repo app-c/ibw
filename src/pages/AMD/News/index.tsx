@@ -173,7 +173,7 @@ export function News() {
           paddingBottom: 100,
         }}
       >
-        <Title>ADICIONE NOVOS POSTS E VIDOS</Title>
+        <Title>ADICIONE NOVOS VIDOS E IMAGENS</Title>
         <Box>
           <Form>
             <Input
@@ -205,7 +205,7 @@ export function News() {
 
               <TouchableOpacity onPress={() => handleSelect("image")}>
                 <Select select={select === "image"}>
-                  <TitleSelect select={select === "image"}>IMAGE</TitleSelect>
+                  <TitleSelect select={select === "image"}>IMAGEM</TitleSelect>
                 </Select>
               </TouchableOpacity>
             </BoxSelect>

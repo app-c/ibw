@@ -12,7 +12,7 @@ export const Container = styled.View`
   flex: 1;
   align-items: center;
   justify-content: center;
-  background-color: ${colors.primary[1]};
+  background-color: ${colors.primary[3]};
 `;
 
 export const Title = styled.Text`

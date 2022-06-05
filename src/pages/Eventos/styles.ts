@@ -5,7 +5,7 @@ import theme from "../../global/styles/theme";
 const { colors, fonts } = theme;
 
 export const Container = styled.View`
-  background-color: ${colors.primary[1]};
+  background-color: #868686;
 `;
 
 export const Box = styled.View`

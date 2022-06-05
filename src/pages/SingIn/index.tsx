@@ -19,7 +19,7 @@ import {
   Up,
 } from "./styles";
 
-import imageFundo from "../../assets/fundo1-onda.png";
+import imageFundo from "../../assets/onda1.jpeg";
 import fundo from "../../assets/logo-signIn.png";
 
 interface PropsSignIn {
@@ -53,9 +53,9 @@ export function SingIn() {
   return (
     <>
       <Container>
-        <ImageFundo source={imageFundo} />
-        <Box left="10" top={15} position="absolute">
-          <Image resizeMode="contain" alt="logo" source={fundo} size="200" />
+        <ImageFundo resizeMode="contain" source={imageFundo} />
+        <Box left="5" top={15} position="absolute">
+          <Image resizeMode="contain" alt="logo" source={fundo} size="120" />
         </Box>
         <ScrollView
           style={{
@@ -67,7 +67,7 @@ export function SingIn() {
             height: 800,
           }}
         >
-          <Title>LOG IN</Title>
+          <Title>LOGIN</Title>
           <BoxInput>
             <Form ref={formRef} onSubmit={handleSubmit}>
               <Input
@@ -100,7 +100,7 @@ export function SingIn() {
       <CreateAccount>
         <BoxCreateAcc onPress={() => navigate("singUp")}>
           <IconAcc name="log-in" />
-          <Up>CRIAR UMA CONTA</Up>
+          <Up>CRIE UMA CONTA</Up>
         </BoxCreateAcc>
       </CreateAccount>
     </>

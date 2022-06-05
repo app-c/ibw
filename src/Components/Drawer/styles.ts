@@ -8,7 +8,7 @@ const { colors, fonts } = theme;
 
 export const Container = styled.View`
   flex: 1;
-  background-color: ${colors.primary[1]};
+  background-color: #868686;
   padding-top: ${Platform.OS === `ios` ? getStatusBarHeight() : 5}px;
 `;
 
@@ -47,7 +47,7 @@ export const TitleName = styled.Text`
 
 export const LogOf = styled.TouchableOpacity`
   width: ${RFValue(100)}px;
-  background-color: ${colors.focus[1]};
+  background-color: ${colors.secundary[1]};
   height: ${RFValue(35)}px;
   margin-left: ${RFValue(20)}px;
 

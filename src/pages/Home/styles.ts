@@ -7,7 +7,7 @@ const { colors, fonts } = theme;
 export const Container = styled.View`
   flex: 1;
 
-  background-color: ${colors.primary[1]};
+  background-color: #868686;
 `;
 
 export const BoxPlayer = styled.View`

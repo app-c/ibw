@@ -3,6 +3,7 @@ export default {
     primary: {
       "1": "rgba(51, 20, 106, 1)",
       "2": "rgba(51, 20, 106, 1)",
+      "3": "#868686",
     },
 
     secundary: {

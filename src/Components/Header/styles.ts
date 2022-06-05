@@ -26,6 +26,6 @@ export const Head = styled.View`
 `;
 
 export const Logo = styled.Image`
-  width: ${RFValue(60)}px;
-  height: ${RFValue(60)}px;
+  width: ${RFValue(80)}px;
+  height: ${RFValue(80)}px;
 `;

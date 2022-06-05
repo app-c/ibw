@@ -9,7 +9,7 @@ export const Container = styled.View`
   flex: 1;
   align-items: center;
   justify-content: center;
-  background-color: ${colors.primary[1]};
+  background-color: #868686;
 
   padding: 20px;
 `;
@@ -21,7 +21,7 @@ export const Title = styled.Text`
 `;
 
 export const CreateAccount = styled.View`
-  background-color: ${colors.focus[1]};
+  background-color: #616161;
   height: 80px;
   align-items: center;
   justify-content: center;
@@ -34,7 +34,7 @@ export const BoxCreateAcc = styled.TouchableOpacity`
 
 export const IconAcc = styled(Feather)`
   font-size: 25px;
-  color: ${colors.focus_second[1]};
+  color: ${colors.secundary[1]};
 `;
 
 export const TitleCreate = styled.Text`

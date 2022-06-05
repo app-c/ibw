@@ -6,19 +6,15 @@ import { RFValue } from "react-native-responsive-fontsize";
 import { Box, Center } from "native-base";
 import theme from "../../global/styles/theme";
 import { Container, Head, Logo, Title } from "./styles";
-import logo from "../../assets/logo-w.png";
+import logo from "../../assets/logo-signIn.png";
 
 export function Header() {
   const { dispatch } = useNavigation();
   return (
     <Container>
       <Head>
-        <Logo source={logo} />
-        <Title
-          style={{ marginRight: RFValue(100), color: theme.colors.text[2] }}
-        >
-          ITACOATIARA {"\n"}BIG WAVE
-        </Title>
+        <Logo resizeMode="contain" source={logo} />
+
         <TouchableOpacity onPress={() => dispatch(DrawerActions.openDrawer())}>
           <Feather
             name="menu"
