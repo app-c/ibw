@@ -9,7 +9,7 @@ const { colors, fonts } = theme;
 export const Container = styled.View`
   flex: 1;
   background-color: #868686;
-  padding-top: ${Platform.OS === `ios` ? getStatusBarHeight() : 5}px;
+  padding-top: ${Platform.OS === `ios` ? getStatusBarHeight() : 0}px;
 `;
 
 export const Header = styled.View`
