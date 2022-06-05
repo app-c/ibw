@@ -96,8 +96,6 @@ export function Home() {
 
   return (
     <Container>
-      {/* <Image top={-10} position="absolute" source={fundo} alt="fund" /> */}
-
       <Modalize ref={modalRef}>
         <Live closeModal={CloseModal} />
       </Modalize>

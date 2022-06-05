@@ -2,16 +2,17 @@ import React, { useCallback, useEffect, useState } from "react";
 import {
   ActivityIndicator,
   FlatList,
+  Platform,
   SafeAreaView,
   ScrollView,
   View,
 } from "react-native";
 import Firestore from "@react-native-firebase/firestore";
 import { useFocusEffect } from "@react-navigation/native";
-import { Center, Image, Text, VStack } from "native-base";
+import { Box, Center, Image, Text, VStack } from "native-base";
 import { CardsEventos } from "../../Components/CardsEventos";
 import { INewsDto } from "../../dtos";
-import { Box, Container, Title } from "./styles";
+import { Container, Title } from "./styles";
 import theme from "../../global/styles/theme";
 import { Header } from "../../Components/Header";
 import fundo from "../../assets/fundo-onda.jpg";
@@ -53,12 +54,14 @@ export function Eventos() {
   );
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <Container>
-        <Header />
+    <Container>
+      <SafeAreaView style={{ flex: 1, backgroundColor: "#868686 " }}>
+        <Box top={Platform.OS === "ios" ? -50 : 0}>
+          <Header />
+        </Box>
 
         <ScrollView>
-          <Box>
+          <Center>
             <Text
               fontSize="lg"
               fontFamily={theme.fonts.Bold}
@@ -134,9 +137,9 @@ export function Eventos() {
                 />
               </View>
             )}
-          </Box>
+          </Center>
         </ScrollView>
-      </Container>
-    </SafeAreaView>
+      </SafeAreaView>
+    </Container>
   );
 }

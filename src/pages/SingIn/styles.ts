@@ -1,7 +1,8 @@
 import { Feather } from "@expo/vector-icons";
-import { Dimensions, PixelRatio } from "react-native";
+import { Dimensions, PixelRatio, Platform } from "react-native";
 import { RFValue } from "react-native-responsive-fontsize";
 import styled from "styled-components/native";
+import { getStatusBarHeight } from "react-native-iphone-x-helper";
 import theme from "../../global/styles/theme";
 
 const { colors, fonts } = theme;
@@ -58,7 +59,8 @@ export const ImageFundo = styled.Image`
   position: absolute;
   width: ${lg}px;
   height: ${at * 0.4}px;
-  top: ${RFValue(-30)}px;
+  top: ${RFValue(-35)}px;
+  padding-top: ${Platform.OS === `ios` ? getStatusBarHeight() : 5}px;
 `;
 
 export const TittleLogo = styled.Text`

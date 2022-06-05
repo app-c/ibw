@@ -15,6 +15,12 @@
                     <view key="view" userInteractionEnabled="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="EXPO-ContainerView" userLabel="ContainerView">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="SplashScreen" translatesAutoresizingMaskIntoConstraints="NO" id="9VC-pU-BGl">
+                                <rect key="frame" x="116" y="321" width="183" height="94"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="Rmq-lb-GrQ"/>
                         <color key="backgroundColor" red="0.1991460025" green="0.078783281149999995" blue="0.41623070839999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -24,4 +30,7 @@
             <point key="canvasLocation" x="140.57971014492756" y="128.80434782608697"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="SplashScreen" width="278" height="122"/>
+    </resources>
 </document>
