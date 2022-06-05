@@ -7,7 +7,7 @@ import theme from "../../global/styles/theme";
 const { colors, fonts } = theme;
 
 export const Container = styled.View`
-  padding-top: ${Platform.OS === `ios` ? getStatusBarHeight() : 5};
+  padding-top: ${Platform.OS === `ios` ? getStatusBarHeight() : 5}px;
 `;
 
 export const Title = styled.Text`
