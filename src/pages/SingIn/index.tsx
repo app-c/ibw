@@ -66,7 +66,10 @@ export function SingIn() {
           <Image resizeMode="contain" alt="logo" source={fundo} size="120" />
         </Box>
         <Box mt={5} ml={40}>
-          <HStack space="10%">
+          <HStack
+            top={Platform.OS === "ios" ? getStatusBarHeight() : 15}
+            space="10%"
+          >
             <Button
               bg={theme.colors.secundary[2]}
               onPress={() => navigate("EVENTOS")}
