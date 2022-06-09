@@ -6,6 +6,7 @@ export declare global {
       singUp: undefined;
       singIn: undefined;
       EVENTOS: undefined;
+      us: undefined;
     }
   }
 }

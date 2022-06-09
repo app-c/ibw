@@ -3,7 +3,7 @@ import { FormHandles } from "@unform/core";
 import { Form } from "@unform/mobile";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Platform, ScrollView, Text, View } from "react-native";
-import { Box, Image } from "native-base";
+import { Box, Button, Center, HStack, Image } from "native-base";
 import { getStatusBarHeight } from "react-native-iphone-x-helper";
 import { RFValue } from "react-native-responsive-fontsize";
 import { Buttom } from "../../Components/Buttom";
@@ -23,6 +23,7 @@ import {
 
 import imageFundo from "../../assets/onda1.jpeg";
 import fundo from "../../assets/logo-signIn.png";
+import theme from "../../global/styles/theme";
 
 interface PropsSignIn {
   email: string;
@@ -56,6 +57,7 @@ export function SingIn() {
     <>
       <Container>
         <ImageFundo resizeMode="contain" source={imageFundo} />
+
         <Box
           left="5"
           top={Platform.OS === "ios" ? getStatusBarHeight() : 15}
@@ -63,14 +65,32 @@ export function SingIn() {
         >
           <Image resizeMode="contain" alt="logo" source={fundo} size="120" />
         </Box>
+        <Box mt={5} ml={40}>
+          <HStack space="10%">
+            <Button
+              bg={theme.colors.secundary[2]}
+              onPress={() => navigate("EVENTOS")}
+              fontFamily={theme.fonts.Bold}
+            >
+              EVENTOS
+            </Button>
+            <Button
+              bg={theme.colors.secundary[2]}
+              onPress={() => navigate("us")}
+              fontFamily={theme.fonts.Bold}
+            >
+              QUEM SOMOS
+            </Button>
+          </HStack>
+        </Box>
         <ScrollView
           style={{
             width: "100%",
           }}
           contentContainerStyle={{
             alignItems: "center",
-            marginTop: 120,
-            height: 800,
+            marginTop: 100,
+            height: 600,
           }}
         >
           <Title>LOGIN</Title>

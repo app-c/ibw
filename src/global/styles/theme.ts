@@ -8,7 +8,7 @@ export default {
 
     secundary: {
       "1": "rgba(48, 201, 205, 1)",
-      "2": "rgba(48, 201, 205, 0.7)",
+      "2": "rgba(48, 201, 205, 0.4)",
     },
 
     focus: {

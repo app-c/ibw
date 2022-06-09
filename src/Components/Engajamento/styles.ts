@@ -26,7 +26,7 @@ export const Title = styled.Text`
 
 export const Ico = styled(FontAwesome5)`
   font-size: ${RFValue(30)}px;
-  color: ${colors.secundary[2]};
+  color: ${colors.secundary[1]};
 `;
 
 export const Touch = styled.TouchableOpacity`

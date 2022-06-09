@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 import { Feather } from "@expo/vector-icons";
 import { DrawerActions, useNavigation } from "@react-navigation/native";
 import React from "react";
@@ -8,7 +9,12 @@ import theme from "../../global/styles/theme";
 import { Container, Head, Logo, Title } from "./styles";
 import logo from "../../assets/logo-signIn.png";
 
-export function Header() {
+type Props = {
+  pres?: () => void;
+  icon: string;
+};
+
+export function Header({ pres, icon }: Props) {
   const { dispatch } = useNavigation();
   return (
     <Container>
@@ -17,7 +23,7 @@ export function Header() {
 
         <TouchableOpacity onPress={() => dispatch(DrawerActions.openDrawer())}>
           <Feather
-            name="menu"
+            name={icon}
             size={RFValue(40)}
             color={theme.colors.text[2]}
           />

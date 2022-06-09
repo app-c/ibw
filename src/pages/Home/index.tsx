@@ -5,7 +5,7 @@ import YoutubePlayer from "react-native-youtube-iframe";
 import { Modalize } from "react-native-modalize";
 
 import Firebase from "@react-native-firebase/firestore";
-import { useFocusEffect } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { Box, Center, Image, Text } from "native-base";
 import {
   BoxPlayer,
@@ -25,6 +25,7 @@ import fundo from "../../assets/fundo1-onda.png";
 import theme from "../../global/styles/theme";
 
 export function Home() {
+  const { dispatch } = useNavigation();
   const modalRef = useRef<Modalize>(null);
 
   //* * ESTADOS ................................................................
@@ -100,7 +101,7 @@ export function Home() {
         <Live closeModal={CloseModal} />
       </Modalize>
 
-      <Header />
+      <Header icon="menu" />
 
       {load ? (
         <Center mt="40%">
