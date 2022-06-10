@@ -65,7 +65,7 @@ export function SingIn() {
         >
           <Image resizeMode="contain" alt="logo" source={fundo} size="120" />
         </Box>
-        <Box mt={5} ml={40}>
+        {/* <Box mt={5} ml={40}>
           <HStack
             top={Platform.OS === "ios" ? getStatusBarHeight() : 15}
             space="10%"
@@ -85,7 +85,7 @@ export function SingIn() {
               QUEM SOMOS
             </Button>
           </HStack>
-        </Box>
+        </Box> */}
         <ScrollView
           style={{
             width: "100%",

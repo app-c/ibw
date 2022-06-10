@@ -21,7 +21,7 @@ export function Us() {
         source={fundo}
         alt="fundo"
       />
-      <Header />
+      <Header icon="menu" />
 
       <Box style={{ marginTop: 130 }}>
         <Title>
