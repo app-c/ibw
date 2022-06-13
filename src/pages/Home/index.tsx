@@ -6,7 +6,15 @@ import { Modalize } from "react-native-modalize";
 
 import Firebase from "@react-native-firebase/firestore";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
-import { Box, Center, Image, Text } from "native-base";
+import {
+  Box,
+  Center,
+  Image,
+  Modal,
+  Text,
+  Button as ButomBase,
+} from "native-base";
+import * as Updates from "expo-updates";
 import {
   BoxPlayer,
   BoxText,
@@ -34,6 +42,8 @@ export function Home() {
   const [data, setData] = useState<ILive>(null);
   const [load, setLoad] = useState(true);
   const [activi, setActive] = useState(true);
+
+  const [showModalUpdates, setModalUpdates] = React.useState(false);
 
   //* * ........................................................................
 
@@ -95,8 +105,47 @@ export function Home() {
 
   // todo ......................................................................
 
+  //* UPDATES ................................................................
+  const ChecUpdadeDevice = React.useCallback(async () => {
+    const { isAvailable } = await Updates.checkForUpdateAsync();
+    if (isAvailable) {
+      setModalUpdates(true);
+    }
+  }, []);
+
+  useFocusEffect(
+    useCallback(() => {
+      ChecUpdadeDevice();
+    }, [ChecUpdadeDevice])
+  );
+
+  const ReloadDevice = React.useCallback(async () => {
+    await Updates.fetchUpdateAsync();
+    await Updates.reloadAsync();
+  }, []);
+
+  useFocusEffect(
+    useCallback(() => {
+      ChecUpdadeDevice();
+    }, [ChecUpdadeDevice])
+  );
+
   return (
     <Container>
+      <Modal isOpen={showModalUpdates} onClose={() => setModalUpdates(false)}>
+        <Center h="20%" p="10" bg={theme.colors.primary[3]}>
+          <Box>
+            <Text color={theme.colors.text[2]}>
+              UMA NOVA ATUALIZAÇÃO ESTA DISPONÍVEL
+            </Text>
+            <Text color={theme.colors.text[2]}>- melhorias no designer</Text>
+            <Text color={theme.colors.text[2]}>vesion: 1.0.8</Text>
+          </Box>
+          <ButomBase onPress={ReloadDevice} mt="10">
+            ATUALIZAR
+          </ButomBase>
+        </Center>
+      </Modal>
       <Modalize ref={modalRef}>
         <Live closeModal={CloseModal} />
       </Modalize>
