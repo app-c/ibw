@@ -121,7 +121,7 @@ export function News() {
 
   return (
     <Container>
-      <Header />
+      <Header icon="menu" />
       <Modalize size="large" ref={modalizeRef}>
         <View
           style={{
@@ -256,11 +256,9 @@ export function News() {
           </Form>
         </Box>
 
-        {title !== "" && descricao !== "" && (
-          <View>
-            <Buttom pres={handleCadastrar} nome="CADASTRAR" load={loading} />
-          </View>
-        )}
+        <View>
+          <Buttom pres={handleCadastrar} nome="CADASTRAR" load={loading} />
+        </View>
       </ScrollView>
     </Container>
   );
