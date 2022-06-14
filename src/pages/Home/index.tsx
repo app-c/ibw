@@ -124,22 +124,16 @@ export function Home() {
     await Updates.reloadAsync();
   }, []);
 
-  useFocusEffect(
-    useCallback(() => {
-      ChecUpdadeDevice();
-    }, [ChecUpdadeDevice])
-  );
-
   return (
     <Container>
       <Modal isOpen={showModalUpdates} onClose={() => setModalUpdates(false)}>
-        <Center h="20%" p="10" bg={theme.colors.primary[3]}>
+        <Center p="10" bg={theme.colors.text[2]}>
           <Box>
-            <Text color={theme.colors.text[2]}>
+            <Text color={theme.colors.text[1]}>
               UMA NOVA ATUALIZAÇÃO ESTA DISPONÍVEL
             </Text>
-            <Text color={theme.colors.text[2]}>- melhorias no designer</Text>
-            <Text color={theme.colors.text[2]}>vesion: 1.0.8</Text>
+            <Text color={theme.colors.text[1]}>- melhorias no designer</Text>
+            <Text color={theme.colors.text[1]}>vesion: 1.1.0</Text>
           </Box>
           <ButomBase onPress={ReloadDevice} mt="10">
             ATUALIZAR

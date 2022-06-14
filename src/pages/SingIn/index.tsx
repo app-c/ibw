@@ -6,6 +6,7 @@ import { Platform, ScrollView, Text, View } from "react-native";
 import { Box, Button, Center, HStack, Image } from "native-base";
 import { getStatusBarHeight } from "react-native-iphone-x-helper";
 import { RFValue } from "react-native-responsive-fontsize";
+import Device from "expo-constants";
 import { Buttom } from "../../Components/Buttom";
 import { Input } from "../../Components/Input";
 import { useAuth } from "../../hooks/AuthContext";
@@ -37,6 +38,13 @@ export function SingIn() {
 
   const [loading, setLoading] = useState(false);
 
+  const device = React.useMemo(() => {
+    if (Platform.OS === "ios") {
+      const device = Device.platform.ios.buildNumber;
+      return Number(device);
+    }
+  }, []);
+
   const handleSubmit = useCallback(
     (data: PropsSignIn) => {
       setLoading(true);
@@ -60,10 +68,10 @@ export function SingIn() {
 
         <Box
           left="5"
-          top={Platform.OS === "ios" ? getStatusBarHeight() : 15}
+          top={Platform.OS === "ios" && device > 8 ? getStatusBarHeight() : 15}
           position="absolute"
         >
-          <Image resizeMode="contain" alt="logo" source={fundo} size="120" />
+          <Image resizeMode="contain" alt="logo" source={fundo} size="110" />
         </Box>
         {/* <Box mt={5} ml={40}>
           <HStack

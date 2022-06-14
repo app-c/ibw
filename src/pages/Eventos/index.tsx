@@ -56,9 +56,7 @@ export function Eventos() {
   return (
     <Container>
       <SafeAreaView style={{ flex: 1, backgroundColor: "#868686 " }}>
-        <Box top={Platform.OS === "ios" ? -50 : 0}>
-          <Header icon="menu" />
-        </Box>
+        <Header icon="menu" />
 
         <ScrollView>
           <Center>
