@@ -13,6 +13,7 @@ import { Alert } from "react-native";
 
 import FireStore from "@react-native-firebase/firestore";
 import Auth from '@react-native-firebase/auth'
+import * as Facebook from 'expo-facebook'
 import { IUsersDto } from "../dtos";
 
 export interface User {
@@ -31,6 +32,7 @@ interface AuthContexData {
   user: IUsersDto | null;
   loading: boolean;
   signIn(credential: SignInCred): Promise<void>;
+  loginSocial(): Promise<void>;
   signOut(): void;
   updateUser(user: IUsersDto): Promise<void>;
   listUser: IUsersDto[] | null;
@@ -112,6 +114,32 @@ export const AuthProvider: React.FC = ({ children }) => {
       });
   }, []);
 
+  const loginSocial = useCallback(async () => {
+
+    // try {
+      await Facebook.initializeAsync({appId: '637152467740970', appName: 'IBW'})
+      const {type } = await Facebook.logInWithReadPermissionsAsync({
+        permissions: ['public_profile']
+      }).catch(h => console.log(h.message))
+
+      console.log(
+        type)
+
+      const apiUrlFace = `curl -i -X GET \
+      "https://graph.facebook.com/v14.0/me?fields=id%2Cname%2Cage_range%2Cabout&access_token=${token}`
+
+      // console.log(type)
+
+      // if(type === 'success') {
+      //   const response = await fetch(apiUrlFace)
+
+      //   const data = await response.json()
+      // }
+    // } catch (error) {
+    //   console.log(error)
+    // }
+  }, []);
+
   useEffect(() => {
     setLoading(true);
   }, []);
@@ -137,6 +165,7 @@ export const AuthProvider: React.FC = ({ children }) => {
         signOut,
         updateUser,
         listUser,
+        loginSocial
       }}
     >
       {children}

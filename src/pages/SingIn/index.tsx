@@ -25,6 +25,7 @@ import {
 import imageFundo from "../../assets/onda1.jpeg";
 import fundo from "../../assets/logo-signIn.png";
 import theme from "../../global/styles/theme";
+import { LoginSocial } from "../../Components/LoginSocial";
 
 interface PropsSignIn {
   email: string;
@@ -34,7 +35,7 @@ interface PropsSignIn {
 export function SingIn() {
   const { navigate } = useNavigation();
   const formRef = useRef<FormHandles>(null);
-  const { signIn } = useAuth();
+  const { signIn, loginSocial } = useAuth();
 
   const [loading, setLoading] = useState(false);
 
@@ -44,6 +45,10 @@ export function SingIn() {
       return Number(device);
     }
   }, []);
+
+  const handleSingInWithFaceBook = React.useCallback(() => {
+    loginSocial();
+  }, [loginSocial]);
 
   const handleSubmit = useCallback(
     (data: PropsSignIn) => {
@@ -132,6 +137,8 @@ export function SingIn() {
             pres={() => formRef.current?.submitForm()}
           />
         </ScrollView>
+
+        <LoginSocial pres={handleSingInWithFaceBook} />
       </Container>
 
       <CreateAccount>
