@@ -1,12 +1,12 @@
 import { useNavigation } from "@react-navigation/native";
 import { FormHandles } from "@unform/core";
 import { Form } from "@unform/mobile";
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import { Platform, ScrollView, Text, View } from "react-native";
-import { Box, Button, Center, HStack, Image } from "native-base";
+import React, { useCallback, useRef, useState } from "react";
+import { Button, Platform, ScrollView } from "react-native";
+import { Box, HStack, Image } from "native-base";
 import { getStatusBarHeight } from "react-native-iphone-x-helper";
-import { RFValue } from "react-native-responsive-fontsize";
 import Device from "expo-constants";
+import { GoogleSignin } from "@react-native-google-signin/google-signin";
 import { Buttom } from "../../Components/Buttom";
 import { Input } from "../../Components/Input";
 import { useAuth } from "../../hooks/AuthContext";
@@ -18,14 +18,13 @@ import {
   IconAcc,
   ImageFundo,
   Title,
-  TittleLogo,
   Up,
 } from "./styles";
 
 import imageFundo from "../../assets/onda1.jpeg";
 import fundo from "../../assets/logo-signIn.png";
-import theme from "../../global/styles/theme";
 import { LoginSocial } from "../../Components/LoginSocial";
+import theme from "../../global/styles/theme";
 
 interface PropsSignIn {
   email: string;
@@ -33,6 +32,11 @@ interface PropsSignIn {
 }
 
 export function SingIn() {
+  GoogleSignin.configure({
+    webClientId:
+      "490098510390-1l8eudg3eiaac6jqjt4o61rusmt9brrd.apps.googleusercontent.com",
+  });
+
   const { navigate } = useNavigation();
   const formRef = useRef<FormHandles>(null);
   const { signIn, loginSocial } = useAuth();
@@ -46,7 +50,7 @@ export function SingIn() {
     }
   }, []);
 
-  const handleSingInWithFaceBook = React.useCallback(() => {
+  const handleSingInWithFaceBook = React.useCallback(async () => {
     loginSocial();
   }, [loginSocial]);
 
@@ -84,6 +88,7 @@ export function SingIn() {
             space="10%"
           >
             <Button
+              title="OPEN"
               bg={theme.colors.secundary[2]}
               onPress={() => navigate("EVENTOS")}
               fontFamily={theme.fonts.Bold}
@@ -91,6 +96,7 @@ export function SingIn() {
               EVENTOS
             </Button>
             <Button
+              title="OPEN"
               bg={theme.colors.secundary[2]}
               onPress={() => navigate("us")}
               fontFamily={theme.fonts.Bold}

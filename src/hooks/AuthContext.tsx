@@ -10,6 +10,8 @@ import React, {
   useState,
 } from "react";
 import { Alert } from "react-native";
+import { GoogleSignin } from "@react-native-google-signin/google-signin";
+
 
 import FireStore from "@react-native-firebase/firestore";
 import Auth from '@react-native-firebase/auth'
@@ -116,17 +118,48 @@ export const AuthProvider: React.FC = ({ children }) => {
 
   const loginSocial = useCallback(async () => {
 
+    const { idToken } = await GoogleSignin.signIn();
+
+    // // Create a Google credential with the token
+    const googleCredential = Auth.GoogleAuthProvider.credential(idToken);
+
+    // Sign-in the user with the credential
+    Auth()
+      .signInWithCredential(googleCredential)
+      .then(au => {
+        const userData = {
+          email: au.user.email,
+          id: au.user.uid,
+          nome: au.user.displayName,
+          avatar: au.user.photoURL,
+          adm: false
+        };
+        FireStore()
+          .collection('users')
+          .doc(au.user.uid)
+          .set(userData)
+          .then(async () => {
+              
+            await AsyncStorage.setItem(
+              User_Collection,
+              JSON.stringify(userData),
+            );
+            setUser(userData);
+          })
+      })
+
+
     // try {
-      await Facebook.initializeAsync({appId: '637152467740970', appName: 'IBW'})
-      const {type } = await Facebook.logInWithReadPermissionsAsync({
-        permissions: ['public_profile']
-      }).catch(h => console.log(h.message))
+      // await Facebook.initializeAsync({appId: '637152467740970', appName: 'IBW'})
+      // const {type } = await Facebook.logInWithReadPermissionsAsync({
+      //   permissions: ['public_profile']
+      // }).catch(h => console.log(h.message))
 
-      console.log(
-        type)
+      // console.log(
+      //   type)
 
-      const apiUrlFace = `curl -i -X GET \
-      "https://graph.facebook.com/v14.0/me?fields=id%2Cname%2Cage_range%2Cabout&access_token=${token}`
+      // const apiUrlFace = `curl -i -X GET \
+      // "https://graph.facebook.com/v14.0/me?fields=id%2Cname%2Cage_range%2Cabout&access_token=${token}`
 
       // console.log(type)
 
@@ -146,6 +179,7 @@ export const AuthProvider: React.FC = ({ children }) => {
 
   const signOut = useCallback(async () => {
     await AsyncStorage.removeItem(User_Collection);
+    await GoogleSignin.signOut();
 
     setUser(null);
   }, []);
