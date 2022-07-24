@@ -6,6 +6,8 @@ buildscript {
     ext {
         buildToolsVersion = findProperty('android.buildToolsVersion') ?: "31.0.0"
         minSdkVersion = 21
+        googlePlayServicesAuthVersion = "19.2.0" 
+
         compileSdkVersion = Integer.parseInt(findProperty('android.compileSdkVersion') ?: "31")
         targetSdkVersion = Integer.parseInt(findProperty('android.targetSdkVersion') ?: "31")
         if (hasProperty('android.kotlinVersion')) {
@@ -33,6 +35,8 @@ buildscript {
         classpath("com.facebook.react:react-native-gradle-plugin")
         classpath("de.undercouch:gradle-download-task:4.1.2")
         classpath 'com.google.gms:google-services:4.3.10'
+        classpath 'com.android.tools.build:gradle:4.2.1' // <--- use this version or newer
+
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -59,5 +63,10 @@ allprojects {
             }
         }
         maven { url 'https://www.jitpack.io' }
+
+        maven {
+            // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
+            url "$rootDir/../node_modules/react-native/android"
+        }
     }
 }
