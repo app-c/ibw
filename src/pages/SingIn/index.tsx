@@ -3,8 +3,8 @@ import { useNavigation } from "@react-navigation/native";
 import { FormHandles } from "@unform/core";
 import { Form } from "@unform/mobile";
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { Button, Platform, ScrollView } from "react-native";
-import { Box, HStack, Image } from "native-base";
+import { Platform, ScrollView } from "react-native";
+import { Box, HStack, Image, Button } from "native-base";
 import { getStatusBarHeight } from "react-native-iphone-x-helper";
 import Device from "expo-constants";
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
@@ -97,13 +97,12 @@ export function SingIn() {
         >
           <Image resizeMode="contain" alt="logo" source={fundo} size="110" />
         </Box>
-        {/* <Box mt={5} ml={40}>
+        <Box mt={5} ml={40}>
           <HStack
             top={Platform.OS === "ios" ? getStatusBarHeight() : 15}
             space="10%"
           >
             <Button
-              title="OPEN"
               bg={theme.colors.secundary[2]}
               onPress={() => navigate("EVENTOS")}
               fontFamily={theme.fonts.Bold}
@@ -111,7 +110,6 @@ export function SingIn() {
               EVENTOS
             </Button>
             <Button
-              title="OPEN"
               bg={theme.colors.secundary[2]}
               onPress={() => navigate("us")}
               fontFamily={theme.fonts.Bold}
@@ -119,7 +117,7 @@ export function SingIn() {
               QUEM SOMOS
             </Button>
           </HStack>
-        </Box> */}
+        </Box>
         <ScrollView
           style={{
             width: "100%",
