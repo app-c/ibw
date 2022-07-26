@@ -1,12 +1,16 @@
+/* eslint-disable camelcase */
 import { useNavigation } from "@react-navigation/native";
 import { FormHandles } from "@unform/core";
 import { Form } from "@unform/mobile";
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Button, Platform, ScrollView } from "react-native";
 import { Box, HStack, Image } from "native-base";
 import { getStatusBarHeight } from "react-native-iphone-x-helper";
 import Device from "expo-constants";
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
+import * as FaceBook from "expo-auth-session/providers/facebook";
+import { ResponseType } from "expo-auth-session";
+import Auth from "@react-native-firebase/auth";
 import { Buttom } from "../../Components/Buttom";
 import { Input } from "../../Components/Input";
 import { useAuth } from "../../hooks/AuthContext";
@@ -50,9 +54,18 @@ export function SingIn() {
     }
   }, []);
 
-  const handleSingInWithFaceBook = React.useCallback(async () => {
-    loginSocial();
-  }, [loginSocial]);
+  // ?? face .................................................................
+  const [request, response, prompAsync] = FaceBook.useAuthRequest({
+    clientId: "637152467740970",
+    responseType: ResponseType.Token,
+  });
+
+  useEffect(() => {
+    if (response?.type === "success") {
+      const { access_token } = response.params;
+      loginSocial(access_token);
+    }
+  }, [loginSocial, response]);
 
   const handleSubmit = useCallback(
     (data: PropsSignIn) => {
@@ -144,7 +157,7 @@ export function SingIn() {
           />
         </ScrollView>
 
-        <LoginSocial pres={handleSingInWithFaceBook} />
+        <LoginSocial pres={() => prompAsync()} />
       </Container>
 
       <CreateAccount>

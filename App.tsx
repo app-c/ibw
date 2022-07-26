@@ -5,6 +5,7 @@ import React, { useEffect } from "react";
 import { LogBox, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import AppLoading from "expo-app-loading";
+import * as WebBrowser from "expo-web-browser";
 import {
   useFonts,
   Monda_400Regular,
@@ -15,6 +16,8 @@ import { Route } from "./src/routes";
 import AppProvider from "./src/hooks";
 import { Splash } from "./src/pages/Splash";
 import { Loading } from "./src/pages/Loading";
+
+WebBrowser.maybeCompleteAuthSession();
 
 export default function App() {
   LogBox.ignoreLogs([`Setting a timer for a long period`]);

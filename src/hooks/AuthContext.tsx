@@ -11,6 +11,8 @@ import React, {
 } from "react";
 import { Alert } from "react-native";
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
+import * as FaceBook from 'expo-auth-session/providers/facebook'
+import {ResponseType} from 'expo-auth-session'
 
 
 import FireStore from "@react-native-firebase/firestore";
@@ -34,7 +36,7 @@ interface AuthContexData {
   user: IUsersDto | null;
   loading: boolean;
   signIn(credential: SignInCred): Promise<void>;
-  loginSocial(): Promise<void>;
+  loginSocial(acess_token: string): Promise<void>;
   signOut(): void;
   updateUser(user: IUsersDto): Promise<void>;
   listUser: IUsersDto[] | null;
@@ -66,6 +68,8 @@ export const AuthProvider: React.FC = ({ children }) => {
   useEffect(() => {
     LoadingUser();
   }, [LoadingUser]);
+
+     
 
   const signIn = useCallback(async ({ email, senha }) => {
 
@@ -116,16 +120,20 @@ export const AuthProvider: React.FC = ({ children }) => {
       });
   }, []);
 
-  const loginSocial = useCallback(async () => {
+  const loginSocial = useCallback(async (access_token: string) => {
 
     const { idToken } = await GoogleSignin.signIn();
 
-    // // Create a Google credential with the token
-    const googleCredential = Auth.GoogleAuthProvider.credential(idToken);
+    const face = Auth.FacebookAuthProvider.credential(access_token);
 
-    // Sign-in the user with the credential
+    //* *google */
+
+    // // Create a Google credential with the token
+    // const googleCredential = Auth.GoogleAuthProvider.credential(idToken);
+
+    // // Sign-in the user with the credential
     Auth()
-      .signInWithCredential(googleCredential)
+      .signInWithCredential(face)
       .then(au => {
         const userData = {
           email: au.user.email,
@@ -149,28 +157,6 @@ export const AuthProvider: React.FC = ({ children }) => {
       })
 
 
-    // try {
-      // await Facebook.initializeAsync({appId: '637152467740970', appName: 'IBW'})
-      // const {type } = await Facebook.logInWithReadPermissionsAsync({
-      //   permissions: ['public_profile']
-      // }).catch(h => console.log(h.message))
-
-      // console.log(
-      //   type)
-
-      // const apiUrlFace = `curl -i -X GET \
-      // "https://graph.facebook.com/v14.0/me?fields=id%2Cname%2Cage_range%2Cabout&access_token=${token}`
-
-      // console.log(type)
-
-      // if(type === 'success') {
-      //   const response = await fetch(apiUrlFace)
-
-      //   const data = await response.json()
-      // }
-    // } catch (error) {
-    //   console.log(error)
-    // }
   }, []);
 
   useEffect(() => {
