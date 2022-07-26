@@ -124,6 +124,8 @@ export const AuthProvider: React.FC = ({ children }) => {
 
     const { idToken } = await GoogleSignin.signIn();
 
+    console.log(access_token)
+
     const face = Auth.FacebookAuthProvider.credential(access_token);
 
     //* *google */

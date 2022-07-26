@@ -61,8 +61,10 @@ export function SingIn() {
   });
 
   useEffect(() => {
+    console.log(response?.type);
     if (response?.type === "success") {
       const { access_token } = response.params;
+      console.log(access_token);
       loginSocial(access_token);
     }
   }, [loginSocial, response]);
